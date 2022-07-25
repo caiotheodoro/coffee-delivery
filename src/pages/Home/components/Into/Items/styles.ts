@@ -9,7 +9,7 @@ export const ItemsContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 2.5rem;
-
+    justify-content: flex-start;
 
 `
 
@@ -39,7 +39,7 @@ export const Item = styled.div<ItemProps>`
     }
     display: flex;
     gap: 0.75rem;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-weight: 500;
     min-width: 231px;

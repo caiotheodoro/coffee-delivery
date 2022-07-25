@@ -4,12 +4,24 @@ import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 import {Router } from './Router'
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <BrowserRouter>
         <Router />
+        <ToastContainer
+                    position="top-right"
+                    hideProgressBar={false}
+                    autoClose={3000}
+                    newestOnTop
+                    closeOnClick={false}
+                    draggable={false}
+                    rtl={false}
+                  />
       </BrowserRouter>
       <GlobalStyle />
     </ThemeProvider>

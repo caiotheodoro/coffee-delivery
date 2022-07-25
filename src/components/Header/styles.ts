@@ -1,16 +1,16 @@
 import styled from 'styled-components'
 
-export const HeaderContainer = styled.div`
+export const HeaderContainer = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin: auto 8rem;
   padding: 2rem;
-
+  z-index: 1;
+  
   nav {
     display: flex;
     gap: 0.75rem;
-    
 
     a {
       text-decoration: none;
