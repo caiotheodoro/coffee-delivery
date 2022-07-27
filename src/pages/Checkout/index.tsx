@@ -1,5 +1,6 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Minus, Money, Plus, Trash } from "phosphor-react";
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 import { HeadCheckout } from "./components/Head";
 import { InputCheckout } from "./components/Input";
 import { ButtonList, OptionButton, CheckoutContainer, InfoContainer, InputPanel, OrderContainer, CounterButton, RemoveButton, ItemContainer, PricingContainer, ConfirmPaymentButton } from "./styles";
@@ -113,10 +114,12 @@ export function Checkout() {
                 <h1>R$ 12,40</h1>
               </span>
             </div>
-            <ConfirmPaymentButton>CONFIRMAR PEDIDO</ConfirmPaymentButton>
+            <NavLink to="/finished" title="Localização">
+              <ConfirmPaymentButton>CONFIRMAR PEDIDO</ConfirmPaymentButton>
+            </NavLink>
           </PricingContainer>
         </article>
-        
+
       </OrderContainer>
     </CheckoutContainer>
   )
