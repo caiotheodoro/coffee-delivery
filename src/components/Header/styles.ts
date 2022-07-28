@@ -58,11 +58,14 @@ export const LocationButton = styled(BaseButton)`
 
 `
 
+
+
 export const CartButton = styled(BaseButton)`
   background-color: ${({ theme }) => theme['yellow-light']};
   svg {
     color: ${({ theme }) => theme['yellow-dark']};
   }
+  position: relative;
 
   &:hover {
     opacity: 0.8;
@@ -71,5 +74,20 @@ export const CartButton = styled(BaseButton)`
   :focus {
         box-shadow: 0 0 0 2px ${({ theme }) => theme['yellow']};
     } 
+    
+    span {
+      position: absolute;
+      right: -8.35px;
+      top: -8px;
+      background-color: ${({ theme }) => theme['yellow-dark']};
+      border-radius: 100%;
+      width: 1.25rem;
+      height: 1.25rem;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      color: ${({ theme }) => theme['white']};
+      font-size: 0.75rem;
+    }
 
 `

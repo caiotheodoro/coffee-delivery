@@ -12,7 +12,7 @@ interface CoffeeCardProps {
 }
 
 export function CoffeeCard({name,src,description,price,tags}:CoffeeCardProps) {
-    const [counter, setCounter] = useState(0);
+    const [counter, setCounter] = useState(1);
     
     function handleAdd() {
         setCounter((state) => state + 1) 
