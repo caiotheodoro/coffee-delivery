@@ -10,11 +10,11 @@ export function FormInfo() {
         e.preventDefault();
         const { value } = e.currentTarget;
         console.log(value);
-      }
+    }
 
 
     return (
-        <form>
+        <>
             <article>
                 <HeadCheckout
                     iconColor="yellowDark"
@@ -59,6 +59,7 @@ export function FormInfo() {
                     </OptionButton>
                 </ButtonList>
             </article>
-        </form>
+        </>
+
     )
 }

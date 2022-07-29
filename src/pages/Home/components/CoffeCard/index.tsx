@@ -1,5 +1,6 @@
 import { Minus, Plus, ShoppingCart } from "phosphor-react";
 import { useState } from "react";
+import { Coffee } from "../../../../reducers/cart/reducer";
 import { CartButton, CoffeeCardContainer, CounterButton } from "./styles";
 
 interface CoffeeCardProps {
@@ -7,20 +8,27 @@ interface CoffeeCardProps {
     name: string;
     src: string;
     description: string;
-    price: string;
+    price: number;
     tags: string[];
+    handleAddCoffee: (coffee: Coffee) => void;
 }
 
-export function CoffeeCard({name,src,description,price,tags}:CoffeeCardProps) {
-    const [counter, setCounter] = useState(1);
+export function CoffeeCard({name,src,description,price,tags,handleAddCoffee,id}:CoffeeCardProps) {
+    const [amount, setAmount] = useState(1);
     
     function handleAdd() {
-        setCounter((state) => state + 1) 
+        setAmount((state) => state + 1) 
        
     }
 
     function handleRemove() {
-        counter > 0 &&  setCounter((state) => state - 1);
+        amount > 0 &&  setAmount((state) => state - 1);
+    }
+
+    const handleAddCoffeToCart = () => {
+        
+        handleAddCoffee({id,name,src,price,amount})
+        setAmount(1);
     }
 
     return (
@@ -41,8 +49,8 @@ export function CoffeeCard({name,src,description,price,tags}:CoffeeCardProps) {
             </div>
             <div className={"price"}>
                 <h1>R$ <span>{price}</span></h1>
-                <CounterButton><Minus size={18} weight="fill" onClick={handleRemove} /> {counter} <Plus size={18} weight="fill" onClick={handleAdd} /></CounterButton>
-                <CartButton>
+                <CounterButton><Minus size={18} weight="fill" onClick={handleRemove} /> {amount} <Plus size={18} weight="fill" onClick={handleAdd} /></CounterButton>
+                <CartButton onClick={handleAddCoffeToCart}>
                     <ShoppingCart size={22} weight="fill" />
                 </CartButton>
             </div>

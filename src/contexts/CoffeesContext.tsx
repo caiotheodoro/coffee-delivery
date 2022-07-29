@@ -4,15 +4,11 @@ import {
     useReducer,
     useState,
 } from 'react'
+import { addCoffeeToCartAction } from '../reducers/cart/actions';
+import { cartReducer, Coffee } from '../reducers/cart/reducer';
 
-interface Coffee {
-    id: string;
-    name: string;
-    price: number;
-    amount: number;
-}
 
-interface OrderInfo {
+export interface OrderInfo {
     cep: string;
     street: string;
     number: string;
@@ -24,54 +20,64 @@ interface OrderInfo {
 }
 
 interface CartContextType {
-    cart: Coffee[]
+    cart: Coffee[];
+    total: number;
+    numOfItems: number;
+    orderInfo: OrderInfo;
+    handleAddCoffeeToCart: (coffee: Coffee) => void;
+    handleRemoveCoffeFromCart: (coffee: Coffee) => void;
+    handleSetOrder: (orderInfo: OrderInfo) => void;
 }
 
 
-interface CartState {
-    cart: Coffee[]
 
-}
 
 export const CartContext = createContext({} as CartContextType)
 
-interface CycleProviderProps {
+interface CartProviderProps {
     children: ReactNode
 }
 
 
 
-export function CyclesContextProvider({ children }: CycleProviderProps) {
-    const [cartState, dispatch] = useReducer((state: CartState, action: any) => {
-        switch (action.type) {
-            case 'ADD':
-                return {
-                    ...state,
-                    cart: [...state.cart, action.payload]
-                }
-            case 'REMOVE':
-                return {
-                    ...state,
-                    cart: state.cart.filter((coffee: Coffee) => coffee.id !== action.payload)
-                }
-            default:
-                return state
-        }
-    }, {
-        cart: []
-
+export function CartContextProvider({ children }: CartProviderProps) {
+    const [orderInfo, setOrderInfo] = useState<OrderInfo>({} as OrderInfo)
+    const [cartState, dispatch] = useReducer(cartReducer, {
+        cart: [],
+        total: 0,
+        numOfItems: 0,
     })
 
-    const [orderInfo, setOrderInfo] = useState<OrderInfo>({} as OrderInfo)
 
-    
+    const handleAddCoffeeToCart = (coffee: Coffee) => {
+        dispatch(addCoffeeToCartAction(coffee))
+        console.log(coffee)
+    }
 
-    const { cart } = cartState
+    const handleRemoveCoffeFromCart = (coffee: Coffee) => {
+        dispatch(addCoffeeToCartAction(coffee))
+    }
+
+    const handleSetOrder = (orderInfo: OrderInfo) => {
+        setOrderInfo(orderInfo)
+    }
+
+
+
+    const { cart,total,numOfItems } = cartState
+
+    console.log(numOfItems)
+
     return (
         <CartContext.Provider
             value={{
                 cart,
-
+                total,
+                handleAddCoffeeToCart,
+                handleRemoveCoffeFromCart,
+                orderInfo,
+                handleSetOrder,
+                numOfItems
             }}
         >
             {children}
