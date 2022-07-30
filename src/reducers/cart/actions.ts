@@ -2,15 +2,27 @@ import { Coffee } from './reducer'
 
 export enum ActionTypes {
   ADD_TO_CART = 'ADD_TO_CART',
+  REDUCE_FROM_CART = 'REDUCE_FROM_CART',
   REMOVE_FROM_CART = 'REMOVE_FROM_CART',
 }
 
-export function addCoffeeToCartAction(coffeeToCart: Coffee) {
+export function addCoffeeToCartAction(coffeeToAdd: Coffee) {
   return {
     type: ActionTypes.ADD_TO_CART,
     payload: {
-        coffeeToCart,
+      coffeeToAdd,
     },
+  }
+}
+
+
+
+export function reduceCoffeeFromCartAction(coffeeToReduce: Coffee) {
+  return {
+      type: ActionTypes.REDUCE_FROM_CART,
+      payload: {
+          coffeeToReduce,
+      },
   }
 }
 

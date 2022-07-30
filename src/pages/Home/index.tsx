@@ -12,7 +12,6 @@ export function Home() {
   const {handleAddCoffeeToCart} = useContext(CartContext)
 
   const handleAddCoffee = (coffee: Coffee) => {
-    console.log(coffee)
     handleAddCoffeeToCart(coffee)
   }
 

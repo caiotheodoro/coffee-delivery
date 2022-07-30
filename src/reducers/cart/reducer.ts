@@ -20,17 +20,35 @@ export function cartReducer(state: CartState, action: any) {
     switch (action.type) {
         case ActionTypes.ADD_TO_CART:
             return produce(state, (draft) => {
-                draft.cart.push(action.payload.coffeeToCart);
-                draft.total = draft.total + (action.payload.coffeeToCart.price * action.payload.coffeeToCart.amount)
-                draft.numOfItems = draft.numOfItems + action.payload.coffeeToCart.amount
+                const item = draft.cart.find(item => item.id === action.payload.coffeeToAdd.id)
+                if (item) {
+                    item.amount = action.payload.coffeeToAdd.amount
+                }
+                else {
+                    draft.cart.push(action.payload.coffeeToAdd)
+                }
+                draft.total = draft.cart.reduce((acc, curr) => acc + curr.price * curr.amount, 0)
+                draft.numOfItems = draft.cart.reduce((acc, curr) => acc + curr.amount, 0)
             })
 
-        case ActionTypes.REMOVE_FROM_CART:
+        case ActionTypes.REDUCE_FROM_CART:
             return produce(state, (draft) => {
-                draft.cart.splice(action.payload.coffeeToRemove, 1)
-                draft.total = draft.total - (action.payload.coffeeToRemove.price * action.payload.coffeeToRemove.amount)
-                draft.numOfItems = draft.numOfItems - action.payload.coffeeToRemove.amount
+                const item = draft.cart.find(item => item.id === action.payload.coffeeToReduce.id)
+                if (item) {
+                    item.amount -= 1
+                    if (item.amount === 0) {
+                        draft.cart = draft.cart.filter(item => item.id !== action.payload.coffeeToReduce.id)
+                    }
+                }
+                draft.total = draft.cart.reduce((acc, curr) => acc + curr.price * curr.amount, 0)
+                draft.numOfItems  = draft.cart.reduce((acc, curr) => acc + curr.amount, 0)
             })
+            case ActionTypes.REMOVE_FROM_CART:
+                return produce(state, (draft) => {
+                    draft.cart = draft.cart.filter(item => item.id !== action.payload.coffeeToRemove.id)
+                    draft.total = draft.cart.reduce((acc, curr) => acc + curr.price * curr.amount, 0)
+                    draft.numOfItems  = draft.cart.reduce((acc, curr) => acc + curr.amount, 0)
+                })
 
         default:
             return state

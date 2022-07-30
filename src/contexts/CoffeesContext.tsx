@@ -4,7 +4,7 @@ import {
     useReducer,
     useState,
 } from 'react'
-import { addCoffeeToCartAction } from '../reducers/cart/actions';
+import { addCoffeeToCartAction, reduceCoffeeFromCartAction, removeCoffeeFromCartAction } from '../reducers/cart/actions';
 import { cartReducer, Coffee } from '../reducers/cart/reducer';
 
 
@@ -26,6 +26,7 @@ interface CartContextType {
     orderInfo: OrderInfo;
     handleAddCoffeeToCart: (coffee: Coffee) => void;
     handleRemoveCoffeFromCart: (coffee: Coffee) => void;
+    handleReduceCoffeFromCart: (coffee: Coffee) => void;
     handleSetOrder: (orderInfo: OrderInfo) => void;
 }
 
@@ -51,11 +52,14 @@ export function CartContextProvider({ children }: CartProviderProps) {
 
     const handleAddCoffeeToCart = (coffee: Coffee) => {
         dispatch(addCoffeeToCartAction(coffee))
-        console.log(coffee)
+    }
+
+    const handleReduceCoffeFromCart = (coffee: Coffee) => {
+        dispatch(reduceCoffeeFromCartAction(coffee))
     }
 
     const handleRemoveCoffeFromCart = (coffee: Coffee) => {
-        dispatch(addCoffeeToCartAction(coffee))
+        dispatch(removeCoffeeFromCartAction(coffee))
     }
 
     const handleSetOrder = (orderInfo: OrderInfo) => {
@@ -75,6 +79,7 @@ export function CartContextProvider({ children }: CartProviderProps) {
                 total,
                 handleAddCoffeeToCart,
                 handleRemoveCoffeFromCart,
+                handleReduceCoffeFromCart,
                 orderInfo,
                 handleSetOrder,
                 numOfItems
