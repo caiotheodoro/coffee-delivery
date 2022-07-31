@@ -1,6 +1,7 @@
 import {
     createContext,
     ReactNode,
+    useEffect,
     useReducer,
     useState,
 } from 'react'
@@ -49,7 +50,19 @@ export function CartContextProvider({ children }: CartProviderProps) {
         cart: [],
         total: 0,
         numOfItems: 0,
-    })
+    },  () => {
+        const cartStored = localStorage.getItem(
+          '@coffee-delivery:cart-state-1.0.0',
+        )
+        if (cartStored) {
+          return JSON.parse(cartStored)
+        }
+        return {
+            cart: [],
+            total: 0,
+            numOfItems: 0,
+        }
+      })
 
 
     const handleAddCoffeeToCart = (coffee: Coffee) => {
@@ -71,10 +84,14 @@ export function CartContextProvider({ children }: CartProviderProps) {
         setOrderInfo({...orderInfo, payment: payment})
         
         navigate('/finished')
+            
 
     }
 
-
+    useEffect(() => {
+        const stateJSON = JSON.stringify(cartState)
+        localStorage.setItem('@coffee-delivery:cart-state-1.0.0', stateJSON)
+      }, [cartState])
 
     const { cart,total,numOfItems } = cartState
 
