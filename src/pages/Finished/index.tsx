@@ -1,7 +1,15 @@
 import { CurrencyDollarSimple, MapPin, Timer } from "phosphor-react";
+import { useContext } from "react";
+import { CartContext } from "../../contexts/CoffeesContext";
 import { BoxInfo, CheckoutContainer, GradientBox, Item } from "./styles";
 
 export function Finished() {
+    const {orderInfo} = useContext(CartContext);
+
+    const {city,district,number,payment,street,state} = orderInfo
+
+
+    const paymentText = payment === 'credit' ? 'Cartão de crédito' : payment === 'debit' ? 'Cartão de débito' : 'Dinheiro'
     return (
         <CheckoutContainer>
                 <span>
@@ -17,10 +25,10 @@ export function Finished() {
                         </span>
                         <div>
                             <h2>
-                                Entrega em <span>Rua João Daniel Martinelli, 102</span>
+                                Entrega em <span>{`${street}, ${number}`}</span>
                             </h2>
                             <p>
-                                Farrapos - Porto Alegre, RS
+                            {`${district} - ${city}, ${state}`}
                             </p>
                         </div>
                     </Item>
@@ -47,7 +55,7 @@ export function Finished() {
                                 Pagamento na entrega
                             </h2>
                             <p>
-                                <span>Cartão de Crédito</span>
+                                <span>{paymentText}</span>
                             </p>
                         </div>
                     </Item>

@@ -128,6 +128,17 @@ export const ConfirmPaymentButton = styled(BaseButton)`
     justify-content: center;
     width: 100%;
     font-size: 0.875rem;
+
+    :hover {
+        background-color: ${({ theme }) => theme['yellow-dark']};
+    }
+
+    
+    :focus {
+            background-color: ${({ theme }) => theme['yellow-dark']};
+            outline: 1px solid ${({ theme }) => theme['purple']};
+            opacity: 0.5;
+        }
   
     
 `

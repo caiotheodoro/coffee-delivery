@@ -1,17 +1,29 @@
 import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from "phosphor-react";
+import { useContext, useState } from "react";
+import { useFormContext } from "react-hook-form";
+import { CartContext, OrderInfo } from "../../../../contexts/CoffeesContext";
 import { HeadCheckout } from "../Head";
-import { InputCheckout } from "../Input";
-import { ButtonList, InputPanel, OptionButton } from "./styles";
+import { ButtonList, InputCheckout, InputPanel, OptionButton } from "./styles";
 
-export function FormInfo() {
+export function FormInfo(this: any) {
 
+    const { register } = useFormContext()
+    const { handleSetPayment } = useContext(CartContext)
 
     const handleChoosePayment = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         const { value } = e.currentTarget;
-        console.log(value);
+        handleSetPayment(value)
     }
 
+    function mascara(t: HTMLInputElement, mask: string) {
+        var i = t.value.length;
+        var saida = mask.substring(1, 0);
+        var texto = mask.substring(i)
+        if (texto.substring(0, 1) != saida) {
+            t.value += texto.substring(0, 1);
+        }
+    }
 
     return (
         <>
@@ -23,16 +35,16 @@ export function FormInfo() {
                     icon={<MapPinLine size={22} />}
                 />
                 <InputPanel>
-                    <InputCheckout type="number" placeholder="CEP" widthInput="12.5rem" />
-                    <InputCheckout type="text" placeholder="Rua" widthInput="100%" />
+                    <InputCheckout type="text" id="cep" placeholder="CEP" widthInput="12.5rem" {...register('cep')} required max={9} onKeyUp={(e) => mascara(e.target, '#####-###')} />
+                    <InputCheckout type="text" id="street" placeholder="Rua" widthInput="100%" {...register('street')} required />
                     <div>
-                        <InputCheckout type="number" placeholder="Número" widthInput="12.5rem" />
-                        <InputCheckout type="text" placeholder="Complemento" widthInput="100%" />
+                        <InputCheckout type="number" id="number" placeholder="Número" widthInput="12.5rem" {...register("number")} required />
+                        <InputCheckout type="text" id="complement" placeholder="Complemento" widthInput="100%"  {...register("complement")} />
                     </div>
                     <div>
-                        <InputCheckout type="text" placeholder="Bairro" widthInput="12.5rem" />
-                        <InputCheckout type="text" placeholder="Cidade" widthInput="100%" />
-                        <InputCheckout type="text" placeholder="UF" widthInput={'3.75rem'} />
+                        <InputCheckout type="text" id="district" placeholder="Bairro" widthInput="12.5rem" {...register("district")} required />
+                        <InputCheckout type="text" id="city" placeholder="Cidade" widthInput="100%" {...register("city")} required />
+                        <InputCheckout type="text" id="state" placeholder="UF" widthInput={'3.75rem'} {...register("state")} required />
                     </div>
                 </InputPanel>
             </article>
@@ -44,16 +56,16 @@ export function FormInfo() {
                     icon={<CurrencyDollar size={22} />}
                 />
 
-                <ButtonList>
-                    <OptionButton onClick={handleChoosePayment}>
+                <ButtonList >
+                    <OptionButton onClick={handleChoosePayment} value="credit">
                         <CreditCard size={16} />
                         <p>CARTÃO DE CRÉDITO</p>
                     </OptionButton>
-                    <OptionButton onClick={handleChoosePayment}>
+                    <OptionButton onClick={handleChoosePayment} value="debit">
                         <Bank size={16} />
                         <p>CARTÃO DE DÉBITO</p>
                     </OptionButton>
-                    <OptionButton onClick={handleChoosePayment}>
+                    <OptionButton onClick={handleChoosePayment} value="cash">
                         <Money size={16} />
                         <p>DINHEIRO</p>
                     </OptionButton>

@@ -6,30 +6,30 @@ import { formatPrice } from "../../../../utils/formatPrice";
 import { ConfirmPaymentButton, CounterButton, ItemContainer, PricingContainer, RemoveButton } from "./styles";
 
 export function OrderInfo() {
-    const { cart,total,handleAddCoffeeToCart,handleReduceCoffeFromCart,handleRemoveCoffeFromCart } = useContext(CartContext)
+    const { cart, total, handleAddCoffeeToCart, handleReduceCoffeFromCart, handleRemoveCoffeFromCart } = useContext(CartContext)
 
 
-   
+
 
     const totalWithDelivery = total + 3.5
     return (
         <article>
             <>
-            {cart.map(coffee => (
-            <ItemContainer>
-                <img src={`src/assets/coffees/Type=${coffee.src}.png`} alt={coffee.name} />
-                <div>
-                    <h1>{coffee.name}</h1>
-                    <span>
-                        <CounterButton><Minus size={14} weight="fill" onClick={() => handleReduceCoffeFromCart({...coffee})} /> {coffee.amount} <Plus size={14} weight="fill" onClick={() => handleAddCoffeeToCart({...coffee, amount: coffee.amount + 1 })} /></CounterButton>
-                        <RemoveButton onClick={() => handleRemoveCoffeFromCart({...coffee})}><Trash size={16} />REMOVER</RemoveButton>
-                    </span>
-                </div>
-                <h2>R$ {formatPrice(coffee.price)}</h2>
-            </ItemContainer>
-            ))}
+                {cart?.map(coffee => (
+                    <ItemContainer>
+                        <img src={`src/assets/coffees/Type=${coffee.src}.png`} alt={coffee.name} />
+                        <div>
+                            <h1>{coffee.name}</h1>
+                            <span>
+                                <CounterButton><Minus size={14} weight="fill" onClick={() => handleReduceCoffeFromCart({ ...coffee })} /> {coffee.amount} <Plus size={14} weight="fill" onClick={() => handleAddCoffeeToCart({ ...coffee, amount: coffee.amount + 1 })} /></CounterButton>
+                                <RemoveButton onClick={() => handleRemoveCoffeFromCart({ ...coffee })}><Trash size={16} />REMOVER</RemoveButton>
+                            </span>
+                        </div>
+                        <h2>R$ {formatPrice(coffee.price)}</h2>
+                    </ItemContainer>
+                ))}
             </>
-           
+
             <PricingContainer>
                 <div>
                     <span>
@@ -45,9 +45,7 @@ export function OrderInfo() {
                         <h1>R$ {formatPrice(totalWithDelivery)}</h1>
                     </span>
                 </div>
-                <NavLink to="/finished" title="Localização">
-                    <ConfirmPaymentButton>CONFIRMAR PEDIDO</ConfirmPaymentButton>
-                </NavLink>
+                <ConfirmPaymentButton type="submit">CONFIRMAR PEDIDO</ConfirmPaymentButton>
             </PricingContainer>
         </article>
     )

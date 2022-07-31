@@ -6,8 +6,7 @@ import {
 } from 'react'
 import { addCoffeeToCartAction, reduceCoffeeFromCartAction, removeCoffeeFromCartAction } from '../reducers/cart/actions';
 import { cartReducer, Coffee } from '../reducers/cart/reducer';
-
-
+import {useNavigate } from 'react-router-dom';
 export interface OrderInfo {
     cep: string;
     street: string;
@@ -28,6 +27,7 @@ interface CartContextType {
     handleRemoveCoffeFromCart: (coffee: Coffee) => void;
     handleReduceCoffeFromCart: (coffee: Coffee) => void;
     handleSetOrder: (orderInfo: OrderInfo) => void;
+    handleSetPayment: (payment: string) => void;
 }
 
 
@@ -43,6 +43,8 @@ interface CartProviderProps {
 
 export function CartContextProvider({ children }: CartProviderProps) {
     const [orderInfo, setOrderInfo] = useState<OrderInfo>({} as OrderInfo)
+    const [payment, setPayment] = useState<string>('')
+    const navigate = useNavigate()
     const [cartState, dispatch] = useReducer(cartReducer, {
         cart: [],
         total: 0,
@@ -52,6 +54,9 @@ export function CartContextProvider({ children }: CartProviderProps) {
 
     const handleAddCoffeeToCart = (coffee: Coffee) => {
         dispatch(addCoffeeToCartAction(coffee))
+    }
+    const handleSetPayment = (payment: string) => {
+        setPayment(payment)
     }
 
     const handleReduceCoffeFromCart = (coffee: Coffee) => {
@@ -63,14 +68,16 @@ export function CartContextProvider({ children }: CartProviderProps) {
     }
 
     const handleSetOrder = (orderInfo: OrderInfo) => {
-        setOrderInfo(orderInfo)
+        setOrderInfo({...orderInfo, payment: payment})
+        
+        navigate('/finished')
+
     }
 
 
 
     const { cart,total,numOfItems } = cartState
 
-    console.log(numOfItems)
 
     return (
         <CartContext.Provider
@@ -81,6 +88,7 @@ export function CartContextProvider({ children }: CartProviderProps) {
                 handleRemoveCoffeFromCart,
                 handleReduceCoffeFromCart,
                 orderInfo,
+                handleSetPayment,
                 handleSetOrder,
                 numOfItems
             }}

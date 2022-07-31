@@ -8,6 +8,10 @@ export const CheckoutContainer = styled.main`
   justify-content: space-between;
   margin: 2.5rem 10rem;
 
+  form {
+    width: 100%;
+  }
+
 `
 
 const BaseContainer = styled.div`

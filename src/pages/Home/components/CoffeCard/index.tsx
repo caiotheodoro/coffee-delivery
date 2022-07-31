@@ -25,7 +25,7 @@ export function CoffeeCard({name,src,description,price,tags,handleAddCoffee,id}:
     }
 
     function handleRemove() {
-        amount > 0 &&  setAmount((state) => state - 1);
+        amount > 1 &&  setAmount((state) => state - 1);
     }
 
     const handleAddCoffeToCart = () => {
