@@ -39,7 +39,7 @@ export function Checkout() {
       city: "",
       state: "",
       district: "",
-      payment: "",
+      payment: "cash",
     },
   })
   

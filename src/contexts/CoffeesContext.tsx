@@ -46,7 +46,7 @@ interface CartProviderProps {
 
 export function CartContextProvider({ children }: CartProviderProps) {
     const [orderInfo, setOrderInfo] = useState<OrderInfo>({} as OrderInfo)
-    const [payment, setPayment] = useState<string>('')
+    const [payment, setPayment] = useState<string>('cash')
     const navigate = useNavigate()
     const [cartState, dispatch] = useReducer(cartReducer, {
         cart: [],

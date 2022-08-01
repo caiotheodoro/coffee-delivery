@@ -19,7 +19,7 @@ const OptionsList = [
     },
     {
         label: "Dinheiro",
-        value: "money",
+        value: "cash",
         icon: <Money weight="fill" />,
     }
 ]
