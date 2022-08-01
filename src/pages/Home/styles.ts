@@ -9,6 +9,11 @@ export const HomeContainer = styled.main`
   margin: auto 10rem;
   
   
+  @media (max-width: 1400px) {
+        font-size: 0.800rem;
+ 
+    }
+
     .cover {
         background: url('/assets/Background.png') no-repeat center center; 
         background-size: cover;
@@ -28,6 +33,7 @@ export const HomeContainer = styled.main`
         justify-content: center;
         gap: 3.5rem;
         line-height: 1.3;
+        align-items: center;
 
         
 
@@ -65,6 +71,11 @@ export const IntroContainer = styled.div`
 
     }
 
+    img {
+        width: 30rem;
+        height: 100%;
+    }
+
 `
 
 
@@ -74,11 +85,18 @@ export const TitleContainer = styled.div`
             justify-content: center;
             gap: 1rem;
             
+              
+
+
             h1 {
                 font-family: 'Baloo 2';
                 font-weight: 800;
                 font-size: 3rem;
                 color: ${({ theme }) => theme['base-title']};
+
+                @media (max-width: 1400px) {
+                    font-size: 2rem;
+                 }
             }
 
             p {
