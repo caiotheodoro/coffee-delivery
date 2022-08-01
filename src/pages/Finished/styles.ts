@@ -54,6 +54,8 @@ export const GradientBox = styled.div`
     flex-direction: column;
     padding: 2px;
     width: 50%;
+    height: fit-content;
+
     border:  1px transparent;
     border-radius: 20px;
     background-image: linear-gradient(white, white), radial-gradient(circle at top left, #DBAC2C 2.61%, #8047F8 98.76%);
