@@ -29,6 +29,7 @@ export const CheckoutContainer = styled.main`
         gap: 2.5rem;
         width: 100%;
         justify-content: space-between;
+        align-items: center;
         h1 {
             margin-bottom: 0.25rem;
             font-size: 2rem;
