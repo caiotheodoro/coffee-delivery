@@ -73,7 +73,7 @@ export function Finished() {
                 </BoxInfo>
                 </GradientBox>
 
-                <img src={"../../../src/assets/Illustration.svg"} alt="Entregador" />
+                <img src={"../../src/assets/Illustration.svg"} alt="Entregador" />
             </div>
         </CheckoutContainer>
     )
