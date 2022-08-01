@@ -49,6 +49,8 @@ const BaseButton = styled.button`
             background-color: ${({ theme }) => theme['purple-light']};
             outline: 1px solid ${({ theme }) => theme['purple']};
         }
+
+        
 `
 
 
@@ -58,8 +60,16 @@ export const OptionButton = styled(BaseButton)`
     padding: 1rem;
     width: 100%;
 
+    span {
+        font-size: 0.75rem;
+    }
     svg {
         color: ${({ theme }) => theme['purple']};
+    }
+    
+    &.active {
+        background-color: ${({ theme }) => theme['purple-light']};
+        outline: 1px solid ${({ theme }) => theme['purple']};
     }
     
 `
@@ -99,4 +109,9 @@ export const InputCheckout = styled.input<InputProps>`
         :focus {
             outline: 1px solid ${({ theme }) => theme['purple']};
         }
-    `
+        ::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+        }
+
+`
+

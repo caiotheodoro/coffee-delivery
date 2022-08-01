@@ -1,12 +1,23 @@
 import { CurrencyDollarSimple, MapPin, Timer } from "phosphor-react";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../contexts/CoffeesContext";
 import { BoxInfo, CheckoutContainer, GradientBox, Item } from "./styles";
 
 export function Finished() {
-    const {orderInfo} = useContext(CartContext);
-
+    const {orderInfo,handleResetCart,numOfItems} = useContext(CartContext);
+    const [estimatedTime, setEstimatedTime] = useState('');
     const {city,district,number,payment,street,state} = orderInfo
+
+    useEffect(() => {
+
+        setTimeout(() => {
+            handleResetCart()
+        }, 3000);
+
+        setEstimatedTime(`${(numOfItems * 15 ) - 10} min - ${(numOfItems * 15 )} min`)
+
+    }, []);
+
 
 
     const paymentText = payment === 'credit' ? 'Cartão de crédito' : payment === 'debit' ? 'Cartão de débito' : 'Dinheiro'
@@ -42,7 +53,7 @@ export function Finished() {
                                 Previsão de entrega
                             </h2>
                             <p>
-                                <span>20 min - 30 min </span>
+                                <span>{estimatedTime}</span>
                             </p>
                         </div>
                     </Item>

@@ -49,6 +49,12 @@ export function cartReducer(state: CartState, action: any) {
                     draft.total = draft.cart.reduce((acc, curr) => acc + curr.price * curr.amount, 0)
                     draft.numOfItems  = draft.cart.reduce((acc, curr) => acc + curr.amount, 0)
                 })
+            case ActionTypes.RESET_CART:
+                return produce(state, (draft) => {
+                    draft.cart = []
+                    draft.total = 0
+                    draft.numOfItems  = 0
+                })
 
         default:
             return state

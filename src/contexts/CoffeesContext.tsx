@@ -5,7 +5,7 @@ import {
     useReducer,
     useState,
 } from 'react'
-import { addCoffeeToCartAction, reduceCoffeeFromCartAction, removeCoffeeFromCartAction } from '../reducers/cart/actions';
+import { addCoffeeToCartAction, reduceCoffeeFromCartAction, removeCoffeeFromCartAction, resetCartAction } from '../reducers/cart/actions';
 import { cartReducer, Coffee } from '../reducers/cart/reducer';
 import {useNavigate } from 'react-router-dom';
 export interface OrderInfo {
@@ -24,9 +24,11 @@ interface CartContextType {
     total: number;
     numOfItems: number;
     orderInfo: OrderInfo;
+    payment: string;
     handleAddCoffeeToCart: (coffee: Coffee) => void;
     handleRemoveCoffeFromCart: (coffee: Coffee) => void;
     handleReduceCoffeFromCart: (coffee: Coffee) => void;
+    handleResetCart: () => void;
     handleSetOrder: (orderInfo: OrderInfo) => void;
     handleSetPayment: (payment: string) => void;
 }
@@ -80,6 +82,11 @@ export function CartContextProvider({ children }: CartProviderProps) {
         dispatch(removeCoffeeFromCartAction(coffee))
     }
 
+    const handleResetCart = () => {
+        dispatch(resetCartAction())
+        setPayment('')
+    }
+
     const handleSetOrder = (orderInfo: OrderInfo) => {
         setOrderInfo({...orderInfo, payment: payment})
         
@@ -104,10 +111,12 @@ export function CartContextProvider({ children }: CartProviderProps) {
                 handleAddCoffeeToCart,
                 handleRemoveCoffeFromCart,
                 handleReduceCoffeFromCart,
+                handleResetCart,
                 orderInfo,
                 handleSetPayment,
                 handleSetOrder,
-                numOfItems
+                numOfItems,
+                payment
             }}
         >
             {children}

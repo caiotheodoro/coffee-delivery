@@ -5,10 +5,30 @@ import { CartContext, OrderInfo } from "../../../../contexts/CoffeesContext";
 import { HeadCheckout } from "../Head";
 import { ButtonList, InputCheckout, InputPanel, OptionButton } from "./styles";
 
+
+const OptionsList = [
+    {
+        label: "Cartão de crédito",
+        value: "credit",
+        icon: <CreditCard weight="fill" />,
+    },
+    {
+        label: "Cartão de débito",
+        value: "debit",
+        icon: <Bank weight="fill" />,
+    },
+    {
+        label: "Dinheiro",
+        value: "money",
+        icon: <Money weight="fill" />,
+    }
+]
+
+
 export function FormInfo(this: any) {
 
     const { register } = useFormContext()
-    const { handleSetPayment } = useContext(CartContext)
+    const { handleSetPayment,payment } = useContext(CartContext)
 
     const handleChoosePayment = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
@@ -24,6 +44,7 @@ export function FormInfo(this: any) {
             t.value += texto.substring(0, 1);
         }
     }
+
 
     return (
         <>
@@ -56,19 +77,13 @@ export function FormInfo(this: any) {
                     icon={<CurrencyDollar size={22} />}
                 />
 
-                <ButtonList >
-                    <OptionButton onClick={handleChoosePayment} value="credit">
-                        <CreditCard size={16} />
-                        <p>CARTÃO DE CRÉDITO</p>
-                    </OptionButton>
-                    <OptionButton onClick={handleChoosePayment} value="debit">
-                        <Bank size={16} />
-                        <p>CARTÃO DE DÉBITO</p>
-                    </OptionButton>
-                    <OptionButton onClick={handleChoosePayment} value="cash">
-                        <Money size={16} />
-                        <p>DINHEIRO</p>
-                    </OptionButton>
+                <ButtonList>
+                    {  OptionsList.map(({icon,label,value}, index) => (
+                        <OptionButton key={index} onClick={handleChoosePayment} value={value}  className={`${payment === value ? 'active' : ''}`}>
+                            {icon}
+                            <span>{label}</span>
+                        </OptionButton>
+                    ))}
                 </ButtonList>
             </article>
         </>
