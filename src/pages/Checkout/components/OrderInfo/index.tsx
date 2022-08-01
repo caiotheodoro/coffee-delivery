@@ -1,6 +1,5 @@
 import { Minus, Plus, Trash } from "phosphor-react";
-import { useContext, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext } from "react";
 import { CartContext } from "../../../../contexts/CoffeesContext";
 import { formatPrice } from "../../../../utils/formatPrice";
 import { ConfirmPaymentButton, CounterButton, ItemContainer, PricingContainer, RemoveButton } from "./styles";
@@ -17,7 +16,7 @@ export function OrderInfo() {
             <>
                 {cart?.map(coffee => (
                     <ItemContainer>
-                        <img src={`src/assets/coffees/Type=${coffee.src}.png`} alt={coffee.name} />
+                        <img src={coffee.src} alt={coffee.name} />
                         <div>
                             <h1>{coffee.name}</h1>
                             <span>
