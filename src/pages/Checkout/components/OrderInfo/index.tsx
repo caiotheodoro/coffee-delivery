@@ -17,7 +17,7 @@ export function OrderInfo() {
             <>
                 {cart?.map(coffee => (
                     <ItemContainer>
-                        <img src={`../../../assets/coffees/Type=${coffee.src}.png`} alt={coffee.name} />
+                        <img src={`/assets/coffees/Type=${coffee.src}.png`} alt={coffee.name} />
                         <div>
                             <h1>{coffee.name}</h1>
                             <span>
