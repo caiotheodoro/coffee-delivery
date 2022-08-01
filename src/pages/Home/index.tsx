@@ -1,5 +1,5 @@
 import { CoffeeListContainer, CoffeesList, HomeContainer, IntroContainer, TitleContainer } from "./styles";
-import coffeeImage from "../../assets/coffee.png";
+import coffeeImage from "/assets/coffee.png";
 import { coffees } from "../../utils/coffees";
 import { Items } from "./components/Items";
 import { CoffeeCard } from "./components/CoffeCard";
