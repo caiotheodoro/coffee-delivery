@@ -10,7 +10,7 @@ export const HomeContainer = styled.main`
   
   
     .cover {
-        background: url('src/assets/Background.png') no-repeat center center; 
+        background: url('../../../src/assets/Background.png') no-repeat center center; 
         background-size: cover;
         position: fixed;
         left: 0;
@@ -42,7 +42,7 @@ export const IntroContainer = styled.div`
     align-items: center;
     margin-bottom: 4.125rem;
     .cover {
-        background: url('src/assets/Background.png') no-repeat center center; 
+        background: url('../../../src/assets/Background.png') no-repeat center center; 
         background-size: cover;
         position: fixed;
         left: 0;

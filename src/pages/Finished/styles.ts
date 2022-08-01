@@ -45,7 +45,7 @@ export const CheckoutContainer = styled.main`
 
     img {
         width: 30rem;
-        height: auto;
+        height: 22.5rem;
     }
 `
 

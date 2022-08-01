@@ -39,7 +39,7 @@ export function CoffeeCard({name,src,description,price,tags,handleAddCoffee,id}:
 
     return (
         <CoffeeCardContainer>
-            <img src={`src/assets/coffees/Type=${src}.png`} alt={name} width={"120px"} height={"auto"} />
+            <img src={`../../../src/assets/coffees/Type=${src}.png`} alt={name} width={"120px"} height={"auto"} />
             <div className={"tags"}>
                 { tags.map(tag => {
                     return (
