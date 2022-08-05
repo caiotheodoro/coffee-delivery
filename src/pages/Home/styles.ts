@@ -2,7 +2,6 @@ import styled from 'styled-components'
 
 export const HomeContainer = styled.main`
   flex: 1;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,6 +46,7 @@ export const IntroContainer = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 4.125rem;
+    margin-top: 10rem;
     .cover {
         background: url('/assets/Background.png') no-repeat center center; 
         background-size: cover;

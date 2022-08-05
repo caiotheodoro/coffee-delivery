@@ -25,7 +25,7 @@ export function Items(){
               <span>
                 <Coffee weight="fill" />
               </span>
-              Entrega rápida e rastreada
+              O café chega fresquinho até você
             </Item>
           </ItemsContainer>
     )

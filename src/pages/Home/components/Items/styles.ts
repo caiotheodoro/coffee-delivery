@@ -8,8 +8,12 @@ export const ItemsContainer = styled.div`
     margin-top: 4.125rem;
     display: flex;
     flex-wrap: wrap;
-    gap: 2.5rem;
+    gap: 1.25rem;
     justify-content: flex-start;
+
+    div {
+        margin-right: 1.25rem;
+    }
 
 `
 
@@ -41,9 +45,10 @@ export const Item = styled.div<ItemProps>`
     gap: 0.75rem;
     justify-content: flex-start;
     align-items: center;
-    font-weight: 500;
+    font-weight: 400;
     min-width: 231px;
 
+    
 
 `
 

@@ -8,6 +8,18 @@ export const HeaderContainer = styled.header`
   padding: 2rem;
   z-index: 1;
   
+  width: 74rem;
+  position: fixed;
+  flex-direction: row;
+  background-color: ${({ theme }) => theme['background']};
+  
+
+  /* on scroll, change background color
+  */
+  &.scrolled {
+    background-color: ${({ theme }) => theme['white']};
+  }
+
   nav {
     display: flex;
     gap: 0.75rem;
